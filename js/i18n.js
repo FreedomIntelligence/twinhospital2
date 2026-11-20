@@ -42,20 +42,20 @@
     '体验核心流程': 'Explore the core workflow',
     '查看数字院区': 'View the campus',
     '观看宣传片': 'Watch the film',
-    '66 秒': '66 s',
+    '68 秒': '68 s',
     // the film
-    '宣传片 · 66 秒': 'Film · 66 s',
+    '宣传片 · 68 秒': 'Film · 68 s',
     'AI 进医院，': 'AI is heading into hospitals.',
     '第一站不该是病人。': 'Its first stop should not be a patient.',
-    '白模院区里的每一个数字都来自本站的楼宇登记：七栋楼、三十层、一百四十七个空间、五百七十一个人员身份逐层亮起。随后，一次门诊在真实 HIS 中走完，四次业务写入，全程留痕。':
-      'Every number on the white model comes from this site’s building registry: seven buildings, 30 floors, 147 spaces and 571 staff identities light up layer by layer. Then one outpatient visit runs through a real HIS — four transactions written, every step recorded.',
+    '白模院区里的每一个数字都来自本站的楼宇登记：七栋楼、三十层、一百四十七个空间、五百七十一个人员身份逐层亮起；投影随时切到项目实录，看见真实的院区与 OpenHIS。随后，一次门诊在真实 HIS 中走完，四次业务写入，全程留痕。':
+      'Every number on the white model comes from this site’s building registry: seven buildings, 30 floors, 147 spaces and 571 staff identities light up layer by layer, and the projection cuts to the project’s own recordings of the campus and of OpenHIS. Then one outpatient visit runs through a real HIS — four transactions written, every step recorded.',
     'TwinHospital2 宣传片': 'TwinHospital2 film',
     '播放宣传片（有声）': 'Play the film (with sound)',
     '播放宣传片': 'Play the film',
-    '66 秒 · 有声': '66 s · sound on',
+    '68 秒 · 有声': '68 s · sound on',
     '影片': 'Film',
-    '白模投影。院区几何与数字取自本站图 1 与表 1（平面示意），HIS 记录取自 C1 门诊验收回放；中文旁白，':
-      'Projection on a white model. Campus geometry and numbers come from Figure 1 and Table 1 of this site (schematic plan); the HIS records from the C1 outpatient acceptance replay. Chinese narration, ',
+    '白模投影，片中嵌入本页视频 1–3 的实录画面。院区几何与数字取自本站图 1 与表 1（平面示意），HIS 页面取自 C1 门诊验收回放；中文旁白，':
+      'Projection on a white model, with the recordings from videos 1–3 on this page. Campus geometry and numbers come from Figure 1 and Table 1 of this site (schematic plan); the HIS pages from the C1 outpatient acceptance replay. Chinese narration, ',
     '中文字幕': 'Chinese subtitles',
     '英文字幕': 'English subtitles',
     '。': '.',
