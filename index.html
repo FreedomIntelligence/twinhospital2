@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="description" content="TwinHospital2：让医院在数字世界中运行。一个连接医院空间、HIS 业务、AI Agent 与可信证据的数字医院研究原型。" />
+    <meta property="og:title" content="TwinHospital2 · 运行在数字世界的 AI 医院" />
+    <meta property="og:description" content="从院内空间到真实 HIS 工作流，查看 TwinHospital2 的核心能力与实验证据。" />
+    <meta property="og:image" content="assets/agent-his-frame.jpg" />
+    <title>TwinHospital2 · 运行在数字世界的 AI 医院</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- 字体异步加载：无法访问 Google Fonts 时直接使用系统字体，不阻塞渲染 -->
+    <link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,600;1,8..60,500&display=swap" />
+    <link rel="stylesheet" href="styles.css" />
+    <script>document.documentElement.classList.add('js');try{if(localStorage.getItem('th2-lang')==='en'){document.documentElement.dataset.i18nPending='';setTimeout(function(){delete document.documentElement.dataset.i18nPending},1500)}}catch(e){}</script>
+    <script src="js/i18n.js" defer></script>
+    <script src="js/app.js" defer></script>
+    <script src="js/twin.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="masthead on-dark" data-masthead>
+      <a class="brand" href="#top" aria-label="TwinHospital2 首页">
+        <img class="brand-mark" src="assets/favicon.svg" width="30" height="30" alt="" aria-hidden="true" />
+        <span><b>TwinHospital2</b><small>AI × HEALTHCARE</small></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-label="切换导航菜单" aria-expanded="false" aria-controls="siteNav"><span></span><span></span></button>
+      <nav id="siteNav" class="site-nav" aria-label="主要导航">
+        <a href="#campus">数字院区</a>
+        <a href="#foundation">运行基础</a>
+        <a href="#demo">交互体验</a>
+        <a href="#roles">岗位协作</a>
+        <a href="#results">实验验证</a>
+        <a href="#future">未来工作</a>
+        <a href="#contact">联系</a>
+        <span class="nav-ink" aria-hidden="true"></span>
+        <div class="lang-switch" role="group" aria-label="切换语言">
+          <button type="button" data-set-lang="zh" aria-pressed="true">中</button>
+          <button type="button" data-set-lang="en" aria-pressed="false">EN</button>
+        </div>
+      </nav>
+      <div class="progress" aria-hidden="true"><span data-progress></span></div>
+    </header>
+
+    <main id="main">
+      <!-- ============ 首屏 ============ -->
+      <section id="top" class="hero">
+        <div class="hero-bg" aria-hidden="true"></div>
+        <div class="hero-text">
+          <p class="eyebrow hero-in" style="--i:0"><i aria-hidden="true"></i>数字医院研究原型</p>
+          <h1 class="hero-title"><span class="line"><span>让医院在</span></span><span class="line"><span><em>数字世界</em>中运行</span></span></h1>
+          <p class="hero-lead hero-in" style="--i:3">TwinHospital2 以真实 HIS 数据流连接医院空间与多角色协作，为 AI 验证、诊疗流程创新和医院运行优化提供可控的仿真试验场。</p>
+          <ul class="scope-tags hero-in" style="--i:4" aria-label="研究边界">
+            <li>研究原型</li><li>合成数据</li><li>本地受控部署</li><li>不提供诊疗建议</li>
+          </ul>
+          <div class="hero-actions hero-in" style="--i:5">
+            <a class="btn btn-primary" href="#demo">体验核心流程<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg></a>
+            <a class="btn btn-ghost" href="#campus">查看数字院区</a>
+          </div>
+          <!-- TODO: 开源链接待补充（论文 / 代码 / 数据 / 视频） -->
+          <dl class="hero-meta hero-in" style="--i:6">
+            <div><dt>参与单位</dt><dd class="partners"><span><b class="logo-chip"><img src="assets/cuhk-sz.png" alt="" width="28" height="22" /></b>香港中文大学（深圳）</span><span><b class="logo-chip"><img src="assets/slai-mark.png" alt="" width="25" height="22" /></b>深圳河套学院</span></dd></div>
+            <div><dt>资源</dt><dd class="resources"><a href="#" aria-label="论文 arXiv（链接待补充）">论文 · arXiv</a><a href="#" aria-label="代码 GitHub（链接待补充）">代码 · GitHub</a><a href="#" aria-label="数据 Hugging Face（链接待补充）">数据 · Hugging Face</a><a href="#" aria-label="视频 YouTube（链接待补充）">视频 · YouTube</a></dd></div>
+          </dl>
+        </div>
+        <div class="hero-visual">
+          <canvas data-twin aria-hidden="true"></canvas>
+          <div class="twin-hud">
+            <p class="twin-badge"><i aria-hidden="true"></i>实时示意 · 合成数据</p>
+            <p class="twin-stats" data-twin-stats data-i18n-skip></p>
+          </div>
+          <ol class="twin-log" data-twin-log data-i18n-skip aria-hidden="true"></ol>
+          <ul class="twin-legend" aria-hidden="true"><li><i class="pt"></i>患者</li><li><i class="st"></i>医护</li><li><i class="lg"></i>后勤</li></ul>
+          <div class="twin-tip" data-twin-tip data-i18n-skip hidden></div>
+        </div>
+        <a class="scroll-cue" href="#campus"><span aria-hidden="true"></span>向下浏览</a>
+      </section>
+
+      <section class="facts" aria-label="核心规模" data-facts>
+        <dl>
+          <div><dt data-count="7">7</dt><dd>栋功能楼宇</dd></div>
+          <div><dt data-count="30">30</dt><dd>个楼层场景</dd></div>
+          <div><dt data-count="147">147</dt><dd>个医院空间</dd></div>
+          <div><dt data-count="571">571</dt><dd>个稳定人员身份</dd></div>
+          <div><dt data-count="4">4</dt><dd>类岗位 Agent</dd></div>
+          <div><dt data-count="8">8</dt><dd>项对照实验</dd></div>
+        </dl>
+      </section>
+
+      <!-- ============ 01 数字院区 ============ -->
+      <section id="campus" class="section" aria-labelledby="campus-title">
+        <header class="section-head" data-reveal>
+          <p class="section-no"><span>01</span>数字院区</p>
+          <h2 id="campus-title">先看看这座医院</h2>
+          <p class="section-lead">TwinHospital2 按真实医院的职能分区建成：门急诊与医技、住院病区、手术重症、药学供应、健康管理、行政与后勤各自成栋，科室、房间和工作点都拥有稳定身份。患者前来就诊，医护在岗位间协作，空间不是一张背景图，而是每一项业务真实发生的地点。</p>
+        </header>
+        <div class="campus-grid" data-campus>
+          <figure class="figure plan-figure" data-reveal>
+            <div class="plan" data-plan data-i18n-skip></div>
+            <figcaption><b>图 1</b>数字院区总平面示意，楼宇代号与回放录像一致；不按比例绘制。将指针移到楼宇上，或在表 1 中选择，即可对照查看。</figcaption>
+          </figure>
+          <div class="register" data-reveal style="--d:1">
+            <table class="data-table register-table">
+              <caption><b>表 1</b>院区楼宇登记</caption>
+              <thead><tr><th scope="col">代号</th><th scope="col">楼宇</th><th scope="col" class="num">楼层</th><th scope="col" class="num">空间</th></tr></thead>
+              <tbody>
+                <tr data-building="A" tabindex="0"><td class="code">A</td><th scope="row">门急诊医技楼</th><td class="num">5</td><td class="num"><span class="meter" style="--v:49"></span>49</td></tr>
+                <tr data-building="B" tabindex="0"><td class="code">B</td><th scope="row">住院综合楼</th><td class="num">5</td><td class="num"><span class="meter" style="--v:23"></span>23</td></tr>
+                <tr data-building="C" tabindex="0"><td class="code">C</td><th scope="row">手术重症中心</th><td class="num">4</td><td class="num"><span class="meter" style="--v:12"></span>12</td></tr>
+                <tr data-building="D" tabindex="0"><td class="code">D</td><th scope="row">药学供应楼</th><td class="num">4</td><td class="num"><span class="meter" style="--v:14"></span>14</td></tr>
+                <tr data-building="E" tabindex="0"><td class="code">E</td><th scope="row">健康管理中心</th><td class="num">4</td><td class="num"><span class="meter" style="--v:16"></span>16</td></tr>
+                <tr data-building="F" tabindex="0"><td class="code">F</td><th scope="row">行政信息楼</th><td class="num">5</td><td class="num"><span class="meter" style="--v:20"></span>20</td></tr>
+                <tr data-building="G" tabindex="0"><td class="code">G</td><th scope="row">后勤仓储中心</th><td class="num">3</td><td class="num"><span class="meter" style="--v:13"></span>13</td></tr>
+              </tbody>
+              <tfoot><tr><td></td><th scope="row">合计 7 栋</th><td class="num">30</td><td class="num">147</td></tr></tfoot>
+            </table>
+            <p class="note">每个空间都有稳定 ID，绑定所属楼宇与楼层。例如挂号收费处、心血管内科、手术室、药房与护理单元。</p>
+          </div>
+        </div>
+        <figure class="figure tour-figure" data-reveal data-tour>
+          <div class="tour-frame">
+            <video src="assets/campus-tour.mp4" poster="assets/campus-tour-poster.jpg" width="1600" height="900" muted loop playsinline preload="metadata" aria-label="TwinHospital2 数字院区巡览：院区鸟瞰、门急诊楼层、病区与药房"></video>
+            <p class="tour-tag" aria-hidden="true"><i></i>院区巡览 · 20 秒循环</p>
+            <button class="tour-toggle" type="button" data-tour-toggle><svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3.5v9l7-4.5z" /></svg><svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 3.5v9M10.5 3.5v9" /></svg><span class="when-paused">播放巡览</span><span class="when-playing">暂停巡览</span></button>
+          </div>
+          <figcaption><b>视频 1</b>院区巡览，20 秒无声循环，进入视野时自动播放。仿真画面录像：院区以像素风格可视化，楼宇代号 A–G 与图 1 一致。</figcaption>
+        </figure>
+      </section>
+
+      <!-- ============ 02 运行基础 ============ -->
+      <section id="foundation" class="section section-alt" aria-labelledby="foundation-title">
+        <header class="section-head" data-reveal>
+          <p class="section-no"><span>02</span>运行基础</p>
+          <h2 id="foundation-title">真实 HIS 驱动</h2>
+          <p class="section-lead">Agent 通过业务界面执行任务，操作结果落实为系统中的业务记录。</p>
+        </header>
+        <div class="evidence-grid">
+          <figure class="figure his-figure" data-reveal>
+            <p class="figure-kicker">OpenHIS</p>
+            <button class="figure-zoom tilt" type="button" data-lightbox="assets/openhis-workbench.jpg" data-lightbox-title="OpenHIS 管理员工作台" aria-label="放大查看 OpenHIS 管理员工作台">
+              <img src="assets/openhis-workbench.jpg" width="1448" height="1086" loading="lazy" alt="OpenHIS 管理员工作台界面配图，包含医生、护士、收费处、药房和管理员五组业务入口" />
+            </button>
+            <figcaption><b>图 2</b>OpenHIS 管理员工作台：医生、护士、收费处、药房与管理员五组业务入口。</figcaption>
+          </figure>
+          <figure class="figure agent-figure" data-reveal style="--d:1">
+            <p class="figure-kicker">Agent · Browser</p>
+            <button class="figure-zoom tilt" type="button" data-lightbox="assets/agent-his-frame.jpg" data-lightbox-title="Agent 在 OpenHIS 中执行门诊挂号查询" aria-label="放大查看 Agent 操作 OpenHIS 的截帧">
+              <img src="assets/agent-his-frame.jpg" width="1381" height="856" loading="lazy" alt="Agent 浏览器实录截帧：左侧为 OpenHIS 门诊挂号界面，右侧为同步记录的训练轨迹与模型决策" />
+            </button>
+            <figcaption><b>图 3</b>Agent 在 OpenHIS 门诊挂号界面执行查询任务；右侧为同步记录的模型决策与操作轨迹。取自浏览器实录第 36 秒。</figcaption>
+          </figure>
+        </div>
+        <div class="staff" data-reveal>
+          <div class="staff-head">
+            <h3>人员与岗位</h3>
+            <p class="staff-figure"><strong data-count="571">571</strong><span>个稳定人员身份</span></p>
+            <p class="note">为岗位分工、权限绑定与任务执行提供基础。</p>
+          </div>
+          <table class="data-table roles-table">
+            <caption><b>表 2</b>岗位示例</caption>
+            <tbody>
+              <tr><th scope="row">临床岗位</th><td>专科医生、责任护士、药师、检验技师、检查技师、康复治疗师、营养师</td></tr>
+              <tr><th scope="row">医技与手术岗位</th><td>手术医师、麻醉医师、重症护士、病理技师、静配药师、财务专员</td></tr>
+              <tr><th scope="row">支持与保障岗位</th><td>窗口服务专员、行政专员、仓储员、信息工程师、设备工程师、洁净区工作人员</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============ 03 研究定位 ============ -->
+      <section id="mission" class="section" aria-labelledby="mission-title">
+        <header class="section-head" data-reveal>
+          <p class="section-no"><span>03</span>研究定位</p>
+          <h2 id="mission-title">临床工作在 HIS 里完成，<br />仿真也应如此</h2>
+          <p class="section-lead">已有的医院仿真多聚焦 Agent 对话或患者流量，后端是简化的。但在真实医院里，医生不会一次拿到患者的全部信息——他在挂号、病历、检验、报告之间逐步取用和写入，HIS 定义了这些数据如何产生和流转。TwinHospital2 把真实 HIS 作为可执行的基础设施，让仿真承担同样的约束。</p>
+        </header>
+        <div class="mission-grid">
+          <figure class="figure stack-figure" data-reveal data-stack>
+            <div class="stack">
+              <div class="layer layer-out"><p class="layer-k">可信证据</p><p class="layer-t">每步画面与动作同时入库，操作结果落实为 HIS 中的业务记录</p></div>
+              <p class="link-label"><i class="packet" aria-hidden="true"></i>轨迹归档</p>
+              <div class="layer"><p class="layer-k">岗位 Agent</p><ul class="chips"><li>医生 Agent</li><li>护士 Agent</li><li>药师 Agent</li><li>采购与后勤 Agent</li></ul></div>
+              <p class="link-label"><i class="packet" aria-hidden="true"></i>本人账号 · 通过浏览器操作业务界面</p>
+              <div class="layer layer-his"><p class="layer-k">真实 HIS</p><ul class="modules"><li>挂号</li><li>病历</li><li>医嘱</li><li>检验</li><li>报告</li><li>处方</li><li>收费</li><li>发药</li></ul></div>
+              <p class="link-label"><i class="packet" aria-hidden="true"></i>任务绑定员工、患者、就诊与环境版本</p>
+              <div class="layer-pair">
+                <div class="layer"><p class="layer-k">人员与岗位</p><p class="layer-t"><b>571</b> 个稳定人员身份</p></div>
+                <div class="layer"><p class="layer-k">医院空间</p><p class="layer-t"><b>7</b> 栋 · <b>30</b> 层 · <b>147</b> 个空间</p></div>
+              </div>
+            </div>
+            <figcaption><b>图 4</b>TwinHospital2 的运行结构：空间与人员身份是基础，真实 HIS 是执行底座，岗位 Agent 在其上工作，每一步留下可核查的证据。</figcaption>
+          </figure>
+          <ol class="principles" data-reveal style="--d:1">
+            <li>
+              <span class="p-no">01</span>
+              <h3>HIS 是执行底座，<br />不是数据库</h3>
+              <p>挂号、医嘱、检验、处方与收费各模块保持真实接口和数据结构，业务按真实时序在模块之间流转，而不是直接写库。</p>
+              <small>真实 HIS 数据流</small>
+            </li>
+            <li>
+              <span class="p-no">02</span>
+              <h3>Agent 以员工身份受权限约束</h3>
+              <p>每个任务绑定员工、患者、就诊和环境版本。Agent 使用本人账号操作真实业务界面，拿不到本岗位之外的权限。</p>
+              <small>独立身份 Agent</small>
+            </li>
+            <li>
+              <span class="p-no">03</span>
+              <h3>进真实医院之前就能验证</h3>
+              <p>新的分诊流程、排班策略或 AI 决策先在这里运行，受真实工作流、权限与时序检验，再决定是否进入临床。</p>
+              <small>部署前验证</small>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ============ 04 交互体验 ============ -->
+      <section id="demo" class="section section-dark" aria-labelledby="demo-title">
+        <header class="section-head" data-reveal>
+          <p class="section-no"><span>04</span>一次门诊任务 · 交互演示</p>
+          <h2 id="demo-title">一次门诊任务，<br />从入院到离院</h2>
+          <p class="section-lead">一次门诊经过六个阶段，每个阶段都由一个岗位在 HIS 中完成对应业务。下表列出各阶段的执行岗位与 HIS 业务，点击阶段可从该时刻播放院内完整回放。切换到「Agent 如何操作」，可以看到 Agent 以员工身份在浏览器中操作 HIS 的实录。</p>
+        </header>
+
+        <div class="tabs" role="tablist" aria-label="核心演示模式" data-reveal>
+          <button type="button" role="tab" id="tab-hospital" aria-selected="true" aria-controls="panel-hospital" data-tab="hospital"><span>01</span><b>医院如何运行</b><small>患者、空间、岗位与 HIS 工作流</small></button>
+          <button type="button" role="tab" id="tab-agent" aria-selected="false" aria-controls="panel-agent" tabindex="-1" data-tab="agent"><span>02</span><b>Agent 如何操作</b><small>任务配置、浏览器操作与轨迹归档</small></button>
+        </div>
+
+        <div class="tab-panel" id="panel-hospital" role="tabpanel" aria-labelledby="tab-hospital" data-panel="hospital">
+          <figure class="player-figure journey-figure" data-journey>
+            <video src="assets/c1-full-journey-demo.mp4" poster="assets/journey-poster.jpg" width="1920" height="1080" playsinline preload="metadata" controls aria-label="院内完整回放 · 一次门诊任务"></video>
+            <figcaption><b>视频 2</b>院内完整回放 · 一次门诊任务，1 分 26 秒。仿真画面录像：院内场景以像素风格可视化，结尾为同一就诊在 OpenHIS 中的处方记录。历史验收回放，只读，不执行新的 HIS 写入。</figcaption>
+          </figure>
+          <div class="pathway-scroll" data-pathway>
+            <table class="pathway">
+              <caption><b>图 5</b>门诊路径：六个阶段的患者动线、执行岗位与 HIS 业务。阶段下方为视频 2 中的时间点，点击阶段即从该时刻播放。</caption>
+              <thead>
+                <tr class="pw-rail-row" aria-hidden="true"><td colspan="7"><div class="pw-rail"><span></span></div></td></tr>
+                <tr>
+                  <th scope="col" class="pw-corner">阶段</th>
+                  <th scope="col"><button type="button" data-journey-at="2.4"><i>01</i><b>入院</b><small>0:00</small></button></th>
+                  <th scope="col"><button type="button" data-journey-at="3"><i>02</i><b>挂号</b><small>0:03</small></button></th>
+                  <th scope="col"><button type="button" data-journey-at="13"><i>03</i><b>问诊</b><small>0:13</small></button></th>
+                  <th scope="col"><button type="button" data-journey-at="32"><i>04</i><b>缴费</b><small>0:32</small></button></th>
+                  <th scope="col"><button type="button" data-journey-at="44"><i>05</i><b>发药</b><small>0:44</small></button></th>
+                  <th scope="col"><button type="button" data-journey-at="72"><i>06</i><b>离院</b><small>1:12</small></button></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">患者动线</th><td>到达门急诊医技楼</td><td>前往挂号收费处</td><td>进入门诊诊室</td><td>回到挂号收费处</td><td>前往门急诊药房</td><td>完成就诊离开</td></tr>
+                <tr><th scope="row">执行岗位</th><td class="empty">—</td><td>挂号收费处</td><td>医生</td><td>挂号收费处</td><td>药师</td><td class="empty">—</td></tr>
+                <tr><th scope="row">HIS 业务</th><td class="empty">—</td><td>门诊挂号</td><td>门诊医生站：病历、医嘱与处方</td><td>门诊收费</td><td>审方与门诊发药</td><td class="empty">—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="panel-agent" role="tabpanel" aria-labelledby="tab-agent" data-panel="agent" hidden>
+          <div class="player" data-player>
+            <figure class="player-figure">
+              <video src="assets/agent-browser-demo.mp4" poster="assets/agent-browser-poster.jpg" width="1920" height="856" playsinline preload="none" controls aria-label="Agent 浏览器实录 · 操作 HIS 全过程"></video>
+              <figcaption><b>视频 3</b>浏览器实录 · Agent 以本人账号操作 HIS，每步画面与动作同时入库</figcaption>
+            </figure>
+            <aside class="player-side">
+              <ol class="chapters" aria-label="Agent 操作步骤">
+                <li><button type="button" data-at="0"><b>任务配置</b><small>0:00</small></button></li>
+                <li><button type="button" data-at="6"><b>填写目标</b><small>0:06</small></button></li>
+                <li><button type="button" data-at="20"><b>启动执行</b><small>0:20</small></button></li>
+                <li><button type="button" data-at="24"><b>登录 HIS</b><small>0:24</small></button></li>
+                <li><button type="button" data-at="30"><b>打开工作台</b><small>0:30</small></button></li>
+                <li><button type="button" data-at="36"><b>进入挂号并查询</b><small>0:36</small></button></li>
+                <li><button type="button" data-at="42"><b>任务结束</b><small>0:42</small></button></li>
+              </ol>
+              <a class="btn btn-on-dark" href="assets/agent-trace-20261118.zip" download="HIS挂号查询轨迹-20261118-191833.zip"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M8 2v7.5M4.5 6.5 8 10l3.5-3.5M2.5 13.5h11" /></svg>下载轨迹数据</a>
+              <p class="player-note">ZIP · 9.2 MB</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 05 岗位协作 ============ -->
+      <section id="roles" class="section" aria-labelledby="roles-title">
+        <header class="section-head" data-reveal>
+          <p class="section-no"><span>05</span>医院岗位架构</p>
+          <h2 id="roles-title">一座由岗位 Agent<br />协作的医院</h2>
+          <p class="section-lead">一次就诊需要多个岗位接力。上面的回放里，从入院到离院的每一步都由某个岗位执行：医生、护士、药师各自拥有身份、权限和工作台，采购与后勤提供运行保障。</p>
+        </header>
+        <div class="roles-grid" data-roles>
+          <figure class="figure arch-figure" data-reveal>
+            <div class="arch-scroll">
+              <svg class="arch" viewBox="0 0 960 590" role="img" aria-labelledby="arch-title arch-desc">
+                <title id="arch-title">TwinHospital2 医院岗位架构</title>
+                <desc id="arch-desc">医生、护士、药师与采购 Agent 通过各自的浏览器操作统一 HIS；HIS 按角色控制权限；问诊对话、Agent 决策、GUI 操作与 HIS 业务记录构成一条全过程可见的数据流。</desc>
+                <defs>
+                  <marker id="ah" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 .8 7 4 0 7.2z" class="ah" /></marker>
+                </defs>
+                <!-- 患者 -->
+                <g class="a-node a-patient" data-r="clinical">
+                  <rect x="20" y="66" width="104" height="68" rx="3" />
+                  <text x="72" y="105" text-anchor="middle">患者</text>
+                </g>
+                <g class="a-edge" data-r="clinical">
+                  <path d="M126 88H206" marker-end="url(#ah)" /><text x="166" y="80" text-anchor="middle">症状 · 问诊</text>
+                  <path d="M206 116H126" marker-end="url(#ah)" /><text x="166" y="134" text-anchor="middle">诊断 · 医嘱</text>
+                </g>
+                <!-- 四个岗位 -->
+                <g class="a-dept" data-r="clinical"><text class="a-dept-name" x="215" y="40">门诊科</text><rect x="210" y="52" width="165" height="96" rx="3" /><text class="a-agent" x="292" y="106" text-anchor="middle">医生 Agent</text></g>
+                <g class="a-dept" data-r="nursing"><text class="a-dept-name" x="400" y="40">护理部</text><rect x="395" y="52" width="165" height="96" rx="3" /><text class="a-agent" x="477" y="106" text-anchor="middle">护士 Agent</text></g>
+                <g class="a-dept" data-r="pharmacy"><text class="a-dept-name" x="585" y="40">药房</text><rect x="580" y="52" width="165" height="96" rx="3" /><text class="a-agent" x="662" y="106" text-anchor="middle">药师 Agent</text></g>
+                <g class="a-dept" data-r="ops"><text class="a-dept-name" x="770" y="40">采购部</text><rect x="765" y="52" width="165" height="96" rx="3" /><text class="a-agent" x="847" y="106" text-anchor="middle">采购员 Agent</text></g>
+                <!-- 浏览器 -->
+                <g class="a-band"><rect x="210" y="184" width="720" height="66" rx="3" /><text x="226" y="207">每个 Agent 的 GUI 浏览器</text></g>
+                <g class="a-edge" data-r="clinical"><path d="M292 150V182" marker-end="url(#ah)" /><path d="M292 252V286" marker-end="url(#ah)" /></g>
+                <g class="a-edge" data-r="nursing"><path d="M477 150V182" marker-end="url(#ah)" /><path d="M477 252V286" marker-end="url(#ah)" /></g>
+                <g class="a-edge" data-r="pharmacy"><path d="M662 150V182" marker-end="url(#ah)" /><path d="M662 252V286" marker-end="url(#ah)" /></g>
+                <g class="a-edge" data-r="ops"><path d="M847 150V182" marker-end="url(#ah)" /><path d="M847 252V286" marker-end="url(#ah)" /></g>
+                <g class="a-glyphs" aria-hidden="true">
+                  <rect x="278" y="218" width="28" height="20" rx="2" /><path d="M278 223h28" />
+                  <rect x="463" y="218" width="28" height="20" rx="2" /><path d="M463 223h28" />
+                  <rect x="648" y="218" width="28" height="20" rx="2" /><path d="M648 223h28" />
+                  <rect x="833" y="218" width="28" height="20" rx="2" /><path d="M833 223h28" />
+                </g>
+                <!-- 统一 HIS -->
+                <g class="a-his">
+                  <rect x="210" y="288" width="720" height="168" rx="3" />
+                  <text class="a-his-title" x="230" y="318">统一 HIS 系统</text>
+                  <rect class="a-lock" x="230" y="334" width="190" height="108" rx="3" />
+                  <path class="a-lock-glyph" d="M313 376v-6a12 12 0 0 1 24 0v6M307 376h36v24h-36z" />
+                  <text x="325" y="428" text-anchor="middle">角色权限控制</text>
+                </g>
+                <g class="a-perm" data-r="clinical"><rect x="440" y="334" width="470" height="24" rx="2" /><text x="452" y="351">医生：病历 · 医嘱</text></g>
+                <g class="a-perm" data-r="nursing"><rect x="440" y="362" width="470" height="24" rx="2" /><text x="452" y="379">护士：护理执行</text></g>
+                <g class="a-perm" data-r="pharmacy"><rect x="440" y="390" width="470" height="24" rx="2" /><text x="452" y="407">药师：处方 · 发药</text></g>
+                <g class="a-perm" data-r="ops"><rect x="440" y="418" width="470" height="24" rx="2" /><text x="452" y="435">采购：库存 · 采购</text></g>
+                <!-- 数据流 -->
+                <g class="a-edge" data-r="clinical"><path d="M72 136V500H96" marker-end="url(#ah)" /></g>
+                <g class="a-flow">
+                  <text class="a-flow-title" x="100" y="482">实时数据流</text>
+                  <rect x="100" y="492" width="150" height="40" rx="3" /><text x="175" y="517" text-anchor="middle">问诊对话</text>
+                  <rect x="290" y="492" width="150" height="40" rx="3" /><text x="365" y="517" text-anchor="middle">Agent 决策</text>
+                  <rect x="480" y="492" width="150" height="40" rx="3" /><text x="555" y="517" text-anchor="middle">GUI 操作</text>
+                  <rect class="a-flow-end" x="670" y="492" width="150" height="40" rx="3" /><text x="745" y="517" text-anchor="middle">HIS 业务记录</text>
+                  <path d="M252 512H288" marker-end="url(#ah)" /><path d="M442 512H478" marker-end="url(#ah)" /><path d="M632 512H668" marker-end="url(#ah)" />
+                  <path d="M822 512H858" marker-end="url(#ah)" /><text class="a-flow-out" x="866" y="517">全过程可见</text>
+                  <path d="M745 458V490" marker-end="url(#ah)" />
+                </g>
+                <g class="a-packets" aria-hidden="true">
+                  <circle r="4.5"><animateMotion dur="3.6s" repeatCount="indefinite" path="M72 136V500H96" /></circle>
+                  <circle r="4"><animateMotion dur="2.4s" begin="0s" repeatCount="indefinite" path="M292 150V286" /></circle>
+                  <circle r="4"><animateMotion dur="2.4s" begin="0.6s" repeatCount="indefinite" path="M477 150V286" /></circle>
+                  <circle r="4"><animateMotion dur="2.4s" begin="1.2s" repeatCount="indefinite" path="M662 150V286" /></circle>
+                  <circle r="4"><animateMotion dur="2.4s" begin="1.8s" repeatCount="indefinite" path="M847 150V286" /></circle>
+                  <circle r="4"><animateMotion dur="4s" repeatCount="indefinite" path="M100 512H860" /></circle>
+                </g>
+              </svg>
+            </div>
+            <figcaption><b>图 6</b>医院岗位架构：医生、护士、药师与采购 Agent 通过各自的浏览器操作统一 HIS，权限按岗位控制，全过程留痕。</figcaption>
+          </figure>
+          <div class="role-cards" data-reveal style="--d:1">
+            <article tabindex="0" data-role="clinical"><span>临床</span><h3>医生 Agent</h3><p>问诊、病历、医嘱与处方签署均通过医生自己的 HIS 工作台完成。</p></article>
+            <article tabindex="0" data-role="nursing"><span>护理</span><h3>护士 Agent</h3><p>接收医嘱、核对患者并记录护理执行，不继承医生权限。</p></article>
+            <article tabindex="0" data-role="pharmacy"><span>药事</span><h3>药师 Agent</h3><p>独立完成审方、配药和发药，并核对真实库存流水。</p></article>
+            <article tabindex="0" data-role="ops"><span>运营</span><h3>采购与后勤 Agent</h3><p>处理采购、入库和保障工作单，让非临床业务进入同一条运行链路。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 06 实验验证 ============ -->
+      <!-- 示例数据占位：以下数字用于演示版式，正式结果以论文实验章节为准 -->
+      <section id="results" class="section section-alt" aria-labelledby="results-title">
+        <header class="section-head" data-reveal>
+          <p class="section-no"><span>06</span>实验验证</p>
+          <h2 id="results-title">先在仿真里跑一遍，<br />再决定是否进入医院</h2>
+          <p class="section-lead">八项实验覆盖四类问题：临床任务的生成质量、Agent 的端到端执行、故障与权限边界，以及医院运营中的排班与资源调度。所有实验都在同一套 HIS 驱动环境下对照运行，差异只来自被检验的那一项。</p>
+        </header>
+        <p class="sample-banner" data-reveal><b>示例数据</b>以下数字为示例数据，用于演示版式；正式结果以论文实验章节为准。</p>
+
+        <figure class="figure chart-figure" data-reveal>
+          <div class="chart-head">
+            <p class="chart-title">六项时间指标：对照与 TwinHospital2 方案（分钟）</p>
+            <ul class="legend" aria-hidden="true"><li><i class="lg-base"></i>对照</li><li><i class="lg-new"></i>TwinHospital2 方案</li></ul>
+          </div>
+          <div class="chart" data-chart data-i18n-skip></div>
+          <figcaption><b>图 7</b>每行左侧为指标与实验编号，圆点分别为对照（人工流程、基线或先到先得）与 TwinHospital2 方案的取值，右侧为相对变化；带 ! 标记的为成本上升或未达目标的指标。完整数值见表 3。</figcaption>
+        </figure>
+
+        <div class="table-scroll" data-reveal data-stagger>
+          <table class="data-table results-table">
+            <caption><b>表 3</b>八项对照实验的主要结果（示例数据）</caption>
+            <thead><tr><th scope="col">指标</th><th scope="col" class="num">结果</th><th scope="col">对照或计数</th><th scope="col">差异</th></tr></thead>
+            <tbody>
+              <tr class="exp"><th colspan="4" scope="rowgroup"><span class="exp-no">01</span><span class="exp-tag">PRESCRIPTION</span><b>处方生成与药师复核</b><p>医生 Agent 通过自己的 HIS 工作台开具处方，药师 Agent 独立审方；对照医生人工开具的处方，观察生成正确率与审核一致性。480 张处方。</p></th></tr>
+              <tr><th scope="row">处方开具成功率</th><td class="num">96.3%</td><td>462 / 480</td><td class="dim">—</td></tr>
+              <tr><th scope="row">药师复核一致率</th><td class="num">92.1%</td><td>对照人工处方</td><td class="dim">—</td></tr>
+              <tr><th scope="row">单张处方平均耗时</th><td class="num">38 秒</td><td>人工 2.4 分钟</td><td><span class="delta">−74%</span></td></tr>
+
+              <tr class="exp"><th colspan="4" scope="rowgroup"><span class="exp-no">02</span><span class="exp-tag">PRE-CONSULTATION</span><b>要不要加入预问诊环节</b><p>把「是否在挂号与问诊之间加入护士预问诊」当作一个运筹决策：对照直接问诊与预问诊后问诊两种流程，比较医生负载与在院时长。480 次门诊。</p></th></tr>
+              <tr><th scope="row">医生问诊时长</th><td class="num">8.7 分钟</td><td>基线 12.4 分钟</td><td><span class="delta">−30%</span></td></tr>
+              <tr><th scope="row">问诊前信息完整度</th><td class="num">91%</td><td>基线 63%</td><td><span class="delta">+28pt</span></td></tr>
+              <tr><th scope="row">患者在院总时长</th><td class="num">23.5 分钟</td><td>基线 19.6 分钟</td><td><span class="delta cost">+20%</span></td></tr>
+
+              <tr class="exp"><th colspan="4" scope="rowgroup"><span class="exp-no">03</span><span class="exp-tag">EMR</span><b>病历自动生成与医生签署</b><p>根据问诊记录和 HIS 中的检验、医嘱数据生成病历草稿，由医生修改后签署；对照医生手写病历，观察字段完整率与医生修改量。200 份病历。</p></th></tr>
+              <tr><th scope="row">病历字段完整率</th><td class="num">94.6%</td><td>对照手写</td><td class="dim">—</td></tr>
+              <tr><th scope="row">医生修改量 · 每份</th><td class="num">18 字</td><td>中位数</td><td class="dim">—</td></tr>
+              <tr><th scope="row">与 HIS 记录一致率</th><td class="num">97.8%</td><td>双读核验</td><td class="dim">—</td></tr>
+
+              <tr class="exp"><th colspan="4" scope="rowgroup"><span class="exp-no">04</span><span class="exp-tag">END-TO-END</span><b>跨岗位端到端完成率</b><p>一个患者从挂号走到取药，由挂号员、医生、检验、收费、药师五个岗位的 Agent 接力完成；任一环节失败即判为未完成。320 次就诊。</p></th></tr>
+              <tr><th scope="row">端到端完成率</th><td class="num">78.1%</td><td>250 / 320</td><td class="dim">—</td></tr>
+              <tr><th scope="row">端到端平均耗时</th><td class="num">18.6 分钟</td><td>人工 26.8 分钟</td><td><span class="delta">−31%</span></td></tr>
+              <tr><th scope="row">每 10 次就诊的人工介入</th><td class="num">4.2 次</td><td>目标 ≤2</td><td><span class="delta cost">未达目标</span></td></tr>
+
+              <tr class="exp"><th colspan="4" scope="rowgroup"><span class="exp-no">05</span><span class="exp-tag">FAULT RECOVERY</span><b>故障注入与恢复</b><p>在任务执行中注入断网、页面过期、会话超时与 HIS 回执未知，观察系统能否恢复，以及是否把未确认的结果误记为成功。240 次注入。</p></th></tr>
+              <tr><th scope="row">恢复成功率</th><td class="num">91.3%</td><td>219 / 240</td><td class="dim">—</td></tr>
+              <tr><th scope="row">未确认即记成功</th><td class="num">0 次</td><td class="dim">—</td><td><span class="delta">全部拦截</span></td></tr>
+              <tr><th scope="row">「结果未知」识别准确率</th><td class="num">96.7%</td><td>人工复核</td><td class="dim">—</td></tr>
+
+              <tr class="exp"><th colspan="4" scope="rowgroup"><span class="exp-no">06</span><span class="exp-tag">PERMISSION</span><b>越界任务的拒绝率</b><p>向不同岗位的 Agent 派发超出职责的任务（药师开处方、护士改医嘱、收费员复核退费），检查是被拒绝，还是越权写入了 HIS。1,500 次越界尝试。</p></th></tr>
+              <tr><th scope="row">越界拒绝率</th><td class="num">99.4%</td><td>1,491 / 1,500</td><td class="dim">—</td></tr>
+              <tr><th scope="row">越权写入 HIS</th><td class="num">0 次</td><td class="dim">—</td><td><span class="delta">全部拦截</span></td></tr>
+              <tr><th scope="row">拒绝理由待补充</th><td class="num">9 次</td><td class="dim">—</td><td><span class="delta cost">人工复核</span></td></tr>
+
+              <tr class="exp"><th colspan="4" scope="rowgroup"><span class="exp-no">07</span><span class="exp-tag">STAFFING</span><b>排班与交接班</b><p>同一患者到达曲线下，比较固定班次与弹性排班的等待时间和工时利用率，并测量交接班时的任务信息丢失率。7 天 × 3 组方案。</p></th></tr>
+              <tr><th scope="row">平均等待</th><td class="num">21.6 分钟</td><td>固定班 27.9 分钟</td><td><span class="delta">−23%</span></td></tr>
+              <tr><th scope="row">工时利用率</th><td class="num">82.3%</td><td>固定班 71.5%</td><td><span class="delta">+10.8pt</span></td></tr>
+              <tr><th scope="row">交接信息丢失率</th><td class="num">1.8%</td><td>43 / 2,400</td><td><span class="delta cost">待降低</span></td></tr>
+
+              <tr class="exp"><th colspan="4" scope="rowgroup"><span class="exp-no">08</span><span class="exp-tag">SCHEDULING</span><b>资源预约的公平性</b><p>床位与设备的三种预约策略（先到先得、优先级、公平分配）在同一到达序列下对照，比较等待时间、资源利用率与分配公平性。</p></th></tr>
+              <tr><th scope="row">等待时间基尼系数</th><td class="num">0.21</td><td>先到先得 0.38</td><td><span class="delta">−45%</span></td></tr>
+              <tr><th scope="row">资源利用率</th><td class="num">86.5%</td><td>先到先得 79.2%</td><td><span class="delta">+7.3pt</span></td></tr>
+              <tr><th scope="row">平均等待</th><td class="num">19.4 分钟</td><td>先到先得 24.7 分钟</td><td><span class="delta">−21%</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ============ 07 未来工作 ============ -->
+      <section id="future" class="section" aria-labelledby="future-title">
+        <header class="section-head" data-reveal>
+          <p class="section-no"><span>07</span>未来工作</p>
+          <h2 id="future-title">这是一个起点</h2>
+          <p class="section-lead">目前跑通的是一条门诊链路，以及围绕它的任务、权限与证据。借助 TwinHospital2，接下来我们想继续推进几件更基础的事。</p>
+        </header>
+        <ol class="future-list" data-reveal data-stagger>
+          <li><span>01</span><h3>HIS API 的开放程度</h3><p>不同开放粒度下 Agent 能否稳定协作：哪些业务必须留在界面里，哪些可以交给接口。</p></li>
+          <li><span>02</span><h3>AI-Native HIS</h3><p>不是给 Agent 配一个账号去点界面，而是让 HIS 原生为 AI 设计接口、权限与审计。</p></li>
+          <li><span>03</span><h3>AI-Native Hospital</h3><p>当 AI 成为稳定的参与者，医院的组织、排班与流程可以据此重新设计。</p></li>
+          <li><span>04</span><h3>患者纵向数据合成</h3><p>合成能通过真实数据检验的纵向患者数据，让仿真的分布与真实医院保持一致。</p></li>
+        </ol>
+      </section>
+
+      <!-- ============ 研究边界 ============ -->
+      <section id="boundary" class="section boundary" aria-labelledby="boundary-title">
+        <div class="boundary-box" data-reveal>
+          <p class="section-no"><span>08</span>研究边界</p>
+          <h2 id="boundary-title">研究原型，而非真实诊疗系统</h2>
+          <p>TwinHospital2 使用合成数据，当前用于数字医院、GUI Agent 与可信工作流研究。部分业务已经形成真实 HIS 验收证据，其余能力仍按明确状态持续验证。</p>
+          <ul class="scope-tags"><li>合成数据</li><li>本地受控部署</li><li>不提供诊疗建议</li></ul>
+        </div>
+      </section>
+
+      <!-- ============ 联系与引用 ============ -->
+      <section id="contact" class="section contact" aria-labelledby="contact-title">
+        <header class="section-head" data-reveal>
+          <p class="section-no"><span>09</span>联系与引用</p>
+          <h2 id="contact-title">从一次就诊，<br />到整座医院的协同</h2>
+          <p class="section-lead">欢迎交流、合作与引用。<br />如需复现实验、获取合成数据或讨论 HIS 侧的接入方式，请与我们联系。</p>
+        </header>
+        <div class="contact-grid" data-reveal>
+          <div class="contact-block">
+            <p class="block-label">联系</p>
+            <a href="mailto:wangby@cuhk.edu.cn">wangby@cuhk.edu.cn</a>
+            <a href="mailto:rongshengwang@link.cuhk.edu.cn">rongshengwang@link.cuhk.edu.cn</a>
+          </div>
+          <div class="contact-block">
+            <div class="cite-head"><p class="block-label">引用</p><button class="btn btn-quiet btn-small" type="button" data-copy-cite>复制</button></div>
+<pre class="cite" data-cite-text>@article{TwinHospital2_2026,
+  title={TwinHospital2},
+  author={FreedomAI},
+  year={2026}
+}</pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <a class="brand" href="#top"><img class="brand-mark" src="assets/favicon.svg" width="30" height="30" alt="" aria-hidden="true" /><span><b>TwinHospital2</b><small>AI × HEALTHCARE</small></span></a>
+      <p>从个体诊疗到医院协同，让医院在数字世界中运行。</p>
+      <div class="footer-meta">
+        <img class="visitor-badge" src="https://visitor-badge.laobi.icu/badge?page_id=FreedomIntelligence.TwinHospital2&left_color=%23595959&right_color=%230b6168" alt="visitor badge" loading="lazy" referrerpolicy="no-referrer" />
+        <span>© 2026 Freedom AI</span>
+      </div>
+    </footer>
+
+    <dialog id="lightbox" class="media-dialog lightbox" aria-labelledby="lightbox-title">
+      <div class="dialog-bar"><span id="lightbox-title"></span><button class="dialog-close" type="button" aria-label="关闭大图">关闭 <span aria-hidden="true">×</span></button></div>
+      <img class="lightbox-img" alt="" />
+    </dialog>
+  </body>
+</html>
