@@ -107,6 +107,61 @@
     }
   })();
 
+  // The promotional film: a silent preview loops while it is on screen; the play button (or the hero's
+  // "watch the film") swaps in the full film with sound, in the page's language. It pauses when scrolled away.
+  (() => {
+    const film = document.querySelector('[data-film]');
+    if (!film) return;
+    const preview = film.querySelector('[data-film-preview]');
+    const main = film.querySelector('[data-film-main]');
+    const play = film.querySelector('[data-film-play]');
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let inView = false;
+    const en = () => !!(window.TH2i18n && window.TH2i18n.lang() === 'en');
+    const srcFor = () => main.dataset[en() ? 'srcEn' : 'srcZh'];
+    // the preview loop and the posters follow the page language too
+    const dress = () => {
+      const k = en() ? 'En' : 'Zh';
+      preview.poster = preview.dataset['poster' + k];
+      if (film.dataset.state !== 'main') main.poster = main.dataset['poster' + k];
+      const want = preview.dataset['src' + k];
+      if (preview.getAttribute('src') !== want) {
+        preview.setAttribute('src', want);
+        if (inView && !reduced && film.dataset.state !== 'main') { preview.load(); preview.play().catch(() => {}); }
+      }
+    };
+    dress();
+    const start = () => {
+      const want = srcFor();
+      if (main.getAttribute('src') !== want) { main.setAttribute('src', want); main.load(); }
+      film.dataset.state = 'main';
+      main.hidden = false;
+      preview.pause();
+      main.play().catch(() => {});
+    };
+    const reset = () => {
+      film.dataset.state = '';
+      main.pause();
+      main.hidden = true;
+      if (inView && !reduced) preview.play().catch(() => {});
+    };
+    play.addEventListener('click', start);
+    main.addEventListener('ended', reset);
+    document.querySelectorAll('[data-film-open]').forEach(link => link.addEventListener('click', event => {
+      event.preventDefault();
+      film.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+      start();
+    }));
+    document.addEventListener('langchange', () => { if (film.dataset.state !== 'main') main.removeAttribute('src'); dress(); });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(entries => entries.forEach(entry => {
+        inView = entry.isIntersecting;
+        if (!inView) { preview.pause(); if (!main.paused) main.pause(); }
+        else if (film.dataset.state !== 'main' && !reduced) { preview.preload = 'auto'; preview.play().catch(() => {}); }
+      }), { threshold: 0.3 }).observe(film);
+    }
+  })();
+
   // Full replay: the stage buttons in the pathway table seek the inline player.
   const journeyVideo = document.querySelector('[data-journey] video');
   document.querySelectorAll('[data-journey-at]').forEach(button => button.addEventListener('click', () => {

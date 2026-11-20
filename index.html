@@ -59,7 +59,7 @@
           </ul>
           <div class="hero-actions hero-in" style="--i:5">
             <a class="btn btn-primary" href="#demo">体验核心流程<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg></a>
-            <a class="btn btn-ghost" href="#campus">查看数字院区</a>
+            <a class="btn btn-film" href="#film" data-film-open><span class="btn-film-ring" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8.5 5.5v13l10.5-6.5z" /></svg></span>观看宣传片<small>66 秒</small></a>
           </div>
           <!-- TODO: 开源链接待补充（论文 / 代码 / 数据 / 视频） -->
           <dl class="hero-meta hero-in" style="--i:6">
@@ -89,6 +89,26 @@
           <div><dt data-count="4">4</dt><dd>类岗位 Agent</dd></div>
           <div><dt data-count="8">8</dt><dd>项对照实验</dd></div>
         </dl>
+      </section>
+
+      <!-- ============ 宣传片 ============ -->
+      <section id="film" class="film" aria-labelledby="film-title" data-film>
+        <div class="film-head" data-reveal>
+          <p class="film-kicker"><i aria-hidden="true"></i>宣传片 · 66 秒</p>
+          <h2 id="film-title">AI 进医院，<br />第一站不该是病人。</h2>
+          <p class="film-lead">白模院区里的每一个数字都来自本站的楼宇登记：七栋楼、三十层、一百四十七个空间、五百七十一个人员身份逐层亮起。随后，一次门诊在真实 HIS 中走完，四次业务写入，全程留痕。</p>
+        </div>
+        <figure class="film-stage" data-reveal style="--d:1">
+          <div class="film-frame" data-film-frame>
+            <video class="film-preview" data-film-preview data-src-zh="assets/film-preview.mp4" data-src-en="assets/film-preview-en.mp4" data-poster-zh="assets/film-poster.jpg" data-poster-en="assets/film-poster-en.jpg" poster="assets/film-poster.jpg" width="1920" height="1080" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"></video>
+            <video class="film-main" data-film-main poster="assets/film-poster.jpg" data-poster-zh="assets/film-poster.jpg" data-poster-en="assets/film-poster-en.jpg" width="1920" height="1080" playsinline preload="none" controls hidden data-src-zh="assets/twinhospital2-film.mp4" data-src-en="assets/twinhospital2-film-en.mp4" aria-label="TwinHospital2 宣传片"></video>
+            <button class="film-play" type="button" data-film-play aria-label="播放宣传片（有声）">
+              <span class="film-ring" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8.5 5.5v13l10.5-6.5z" /></svg></span>
+              <span class="film-play-label">播放宣传片<small>66 秒 · 有声</small></span>
+            </button>
+          </div>
+          <figcaption><b>影片</b>白模投影。院区几何与数字取自本站图 1 与表 1（平面示意），HIS 记录取自 C1 门诊验收回放；中文旁白，<span class="film-subs-zh">中文字幕</span><span class="film-subs-en">英文字幕</span>。</figcaption>
+        </figure>
       </section>
 
       <!-- ============ 01 数字院区 ============ -->

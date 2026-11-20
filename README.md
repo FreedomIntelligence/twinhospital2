@@ -17,6 +17,7 @@ Project website for TwinHospital2, a digital-hospital research prototype connect
 | `js/app.js` | 院区平面图、门诊路径、录像播放、岗位架构图与实验图表 |
 | `js/i18n.js` | 中英双语词典与切换 |
 | `assets/` | 图片、录像（院区巡览、院内完整回放、Agent 浏览器实录）与轨迹数据 |
+| `assets/twinhospital2-film*.mp4` | 宣传片（66 秒，中文旁白；中文字幕版 / 英文字幕版），`film-preview*.mp4` 为首页静音预览，`film-poster*.jpg` 为封面 |
 
 纯静态站点，无需构建。本地预览：
 
